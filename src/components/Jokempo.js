@@ -1,4 +1,7 @@
-const jokempo = [
+import React, { Component } from 'react';
+
+
+const opcao = [
     {
         id: 1,
         desc: "pedra"
@@ -18,38 +21,43 @@ function rand() {
     return Math.floor(valor)
 }
 
-function comparar( pc , jogador ) {
-    if(pc == jogador){
+function comparar(pc, jogador) {
+    if (pc == jogador) {
         return "empate"
-    }else if ((pc == "pedra" && jogador == "tesoura") || (pc == "papel" && jogador == "pedra") || (pc == "tesoura" && jogador == "papel")){
+    } else if ((pc == "pedra" && jogador == "tesoura") || (pc == "papel" && jogador == "pedra") || (pc == "tesoura" && jogador == "papel")) {
         return "derrota"
-    }else {
+    } else {
         return "vitoria"
-    }       
+    }
 }
 
 function resultado(a, b) {
-    const getValue = value => jokempo.filter(({id}) => id===value)
-    
+    const getValue = value => opcao.filter(({ id }) => id === value)
+
     let pc = Object.values(getValue(a))[0].desc
     let jogador = Object.values(getValue(b))[0].desc
-    
-    console.log(pc,jogador)   
+
+    console.log(pc, jogador)
     return comparar(pc, jogador)
 }
 
 const sorteio = { max: 4, min: 1 }
 const pc = rand(sorteio)
 const jogador = rand(sorteio)
-console.log(pc,jogador)
-console.log(resultado(pc,jogador))
-
+const mostraResultado = resultado(pc, jogador)
+console.log(resultado(pc, jogador))
 
 class Jokempo extends Component {
-    render() {
 
+    render() {
+        const {handleChoose}=this.props
+        
         return (
-            <TelaResultado/>
+           <div className= "mostra_resultado">
+               <h1>
+                   {mostraResultado}
+               </h1>
+           </div>
         )
     }
 }

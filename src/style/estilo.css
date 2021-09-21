@@ -83,3 +83,7 @@
 .opcao {
     padding: 0px 25px;
 }
+
+.aparece_box {
+    display: block;
+}
