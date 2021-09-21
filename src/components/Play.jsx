@@ -10,6 +10,7 @@ const VAL_PAPEL = 3
 
 const intialState = {
     jogar : false,
+    opcao: null
 }
 
 class Play extends Component {
@@ -18,6 +19,7 @@ class Play extends Component {
 
         this.state = { ...intialState }
         this.handleClick = this.handleClick.bind(this)
+        this.handleChoose = this.handleChoose.bind(this)
     }     
 
     handleClick = event => {
@@ -27,11 +29,11 @@ class Play extends Component {
 
     handleChoose = event => {
         event.preventDefault()
-        event.target.getAttribute("data-value")
+        this.setState({opcao: Number(event.target.getAttribute("data-value"), 10)})
     }
 
     render() {
-        const {jogar}=this.state
+        const {jogar, opcao}=this.state
         return (
             <div className="escolhe_opcao">                
                 <figure className={`invisivel${jogar ? " aparece_box" : " "}`}>
@@ -48,7 +50,7 @@ class Play extends Component {
                 <button className={`button_play${jogar ? " invisivel" : ""}`} onClick={(e) => this.handleClick(e)}>
                     <a className="play" href="###">PLAY</a>
                 </button>
-                <Jokempo opcao={this.handleChoose}/>
+                <Jokempo opcao={opcao} />
             </div>
         )
     }
