@@ -1,13 +1,12 @@
-import Header from "./components/Header";
-import Jogo from "./components/Jogo";
 import { Fragment } from "react";
+import Home from "./components/Home";
+import Jogo from "./components/Jogo";
 
 function App() {
 
   return (
     <Fragment>
-      <Header />
-      <Jogo/>
+      <Home/>
     </Fragment>
   );
 }

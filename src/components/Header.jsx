@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import '../style/estilo.css';
-import jokempo from '../img/jokempo.png';
+import React, { Component } from 'react'
+import '../style/Header.css'
+import '../style/public.css'
+import jokempo from '../img/jokempo.png'
 
 class Header extends Component {
     render() { 
