@@ -1,0 +1,21 @@
+.erro_box {
+    align-items: center;
+    justify-content: center;
+    height: 625px;
+    display: flex;
+    flex-flow: column;
+}
+
+.img_erro {
+    width: 500px;
+}
+
+.erro_title {
+    display: flex;
+    flex-flow: column;
+}
+
+.erro_text {
+    display: flex;
+    justify-content: center;
+}
