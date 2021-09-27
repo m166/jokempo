@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     flex-flow: column;
+    margin-top: 40px;
 }
 
 .footer_title {

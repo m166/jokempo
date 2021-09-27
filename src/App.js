@@ -5,6 +5,7 @@ import EscolhaDeHeroi from "./components/EscolhaDeHeroi";
 import Home from "./components/Home";
 import Pagina404 from "./paginas/Pagina404";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Pagina404/>
         </Route>
       </Switch>
+      <Footer/>
     </Router>
   );
 }

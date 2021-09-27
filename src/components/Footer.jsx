@@ -6,14 +6,14 @@ import '../style/public.css'
 class Footer extends Component {
     render() { 
         return (
-            <div className="footer_box container">
+            <footer className="footer_box container">
                 <h1 className="footer_title">
                     JOGO
                 </h1>
                 <h3 className="footer_text">
                     Desenvolvido pelo Estágiario
                 </h3>
-            </div>
+            </footer>
         )
     }
 }
