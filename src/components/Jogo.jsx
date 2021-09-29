@@ -11,7 +11,7 @@ class Jogo extends Component {
                 <h1 className="jogar_agora_titulo">
                     JOGAR AGORA!
                 </h1>
-                <Play />
+                <Play/>
             </section>
         )
     }

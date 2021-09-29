@@ -12,17 +12,29 @@ const EscolhaDeHeroi = ({ url }) => {
         busca(url, setHerois)
     }, [])
 
+    const [escolha, setEscolha] = useState("")
+
+    useEffect(() => {
+        console.log(escolha)
+    })
+
+    const handleChoice = id => {
+        setEscolha(herois.filter(heroi => heroi.id === id)[0])
+    }
+
     return (
         <section className="escolha_heroi_box container">
             <h1 className="escolha_heroi_titulo">
                 ESCOLHA SEU HEROI !
             </h1>
             <div className="escolha_heroi">
-                <ul className="lista_herois_box">
+                <ul
+                    className="lista_herois_box">
                     {
                         herois.map((heroi) => (
-                            <li className="lista_herois" key={heroi.id}>
-                                <img src={heroi.image} className="img_heroi" />
+                            <li onClick={() => handleChoice(heroi.id)}
+                                className="lista_herois" key={heroi.id}>
+                                <img src={heroi.image} className="img_heroi" alt="herois"/>
                                 <h3 className="name_heroi">
                                     {heroi.name}
                                 </h3>
@@ -32,8 +44,9 @@ const EscolhaDeHeroi = ({ url }) => {
                     }
                 </ul>
             </div>
-        </section>
+        </section >
     )
 }
+
 
 export default EscolhaDeHeroi;

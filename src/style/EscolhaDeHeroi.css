@@ -15,6 +15,7 @@
 
 .escolha_heroi {
     width: 100%;
+    min-height: 500px;
     flex-wrap: wrap;
     display: flex;
     justify-content: space-evenly;
@@ -24,6 +25,7 @@
 .img_heroi {
     display: flex;
     width: 200px;
+    cursor: pointer;
 }
 
 .lista_herois_box {
