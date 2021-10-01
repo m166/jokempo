@@ -2,25 +2,20 @@ import React, { useEffect, useState } from 'react';
 import '../style/public.css'
 import '../style/EscolhaDeHeroi.css'
 
-import { busca } from '../api/api'
+import { connect } from 'react-redux'
 
-const EscolhaDeHeroi = ({ url }) => {
-
-    const [herois, setHerois] = useState([])
-
-    useEffect(() => {
-        busca(url, setHerois)
-    }, [])
-
-    const [escolha, setEscolha] = useState("")
-
-    useEffect(() => {
-        console.log(escolha)
-    })
-
-    const handleChoice = id => {
-        setEscolha(herois.filter(heroi => heroi.id === id)[0])
+function toggleEscolha(heroi){
+    return {
+        type: 'PLAYER_CHANGED',
+        payload: {
+            heroi
+        }
     }
+}
+
+
+const EscolhaDeHeroi = ({herois, dispatch}) => {
+
 
     return (
         <section className="escolha_heroi_box container">
@@ -28,18 +23,16 @@ const EscolhaDeHeroi = ({ url }) => {
                 ESCOLHA SEU HEROI !
             </h1>
             <div className="escolha_heroi">
-                <ul
-                    className="lista_herois_box">
+                <ul className="lista_herois_box">
                     {
                         herois.map((heroi) => (
-                            <li onClick={() => handleChoice(heroi.id)}
+                            <li onClick={() => dispatch(toggleEscolha(heroi))}
                                 className="lista_herois" key={heroi.id}>
-                                <img src={heroi.image} className="img_heroi" alt="herois"/>
+                                <img src={heroi.image} className="img_heroi" alt="herois" />
                                 <h3 className="name_heroi">
                                     {heroi.name}
                                 </h3>
                             </li>
-
                         ))
                     }
                 </ul>
@@ -48,5 +41,4 @@ const EscolhaDeHeroi = ({ url }) => {
     )
 }
 
-
-export default EscolhaDeHeroi;
+export default connect(state => ({ herois: state.herois}))(EscolhaDeHeroi)

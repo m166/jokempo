@@ -7,6 +7,10 @@ import x_combat from '../img/x_combat.png';
 import capitao_america from '../img/capitao_america.png';
 import '../style/Play.css'
 
+
+
+import { connect } from "react-redux";
+
 const VAL_PEDRA = 1
 const VAL_TESOURA = 2
 const VAL_PAPEL = 3
@@ -53,10 +57,10 @@ class Play extends Component {
 
     handleClick = event => {
         event.preventDefault()
-        this.clearScreen()        
+        this.clearScreen()
         this.setState(prevState => ({ jogar: !prevState.jogar }))
     }
-    
+
     rand() {
         const valor = Math.random() * (this.sorteio.max - this.sorteio.min) + this.sorteio.min
         return Math.floor(valor)
@@ -72,14 +76,14 @@ class Play extends Component {
         }
     }
 
-    clearScreen() {        
+    clearScreen() {
         this.setState({ ...intialState })
     }
 
     resultado(a, b) {
         let result = ""
         if (b) {
-            const getValue = value => this.listOpcao.filter(({ id }) => id === parseInt(value)) 
+            const getValue = value => this.listOpcao.filter(({ id }) => id === parseInt(value))
 
             let pc = Object.values(getValue(a))[0].desc
             let jogador = Object.values(getValue(b))[0].desc
@@ -107,39 +111,33 @@ class Play extends Component {
             <div>
                 <div className="resultado_tela">
                     <img className="play_icon" src={capitao_america} alt="Capitão America" />
-                    <img className="img_jokempo"  src={imgEscolhida} />
-                    
-                    <div className="mostra_resultado">
-                        { (!!resultado)
-                        ?
-                        <div>
-                        <h1 className="">
-                            {resultado}
-                        </h1>
-                        </div>
-                        :
-                        <img className="x_combat" src={x_combat} alt="x_combat" />  
-                        }
-                    </div>                    
+                    <img className="img_jokempo" src={imgEscolhida} />
 
-                    <img className="img_jokempo"  src={escolhaMaquina} />
+                    <div className="mostra_resultado">
+                        {(!!resultado)
+                            ?
+                            <div>
+                                <h1 className="">
+                                    {resultado}
+                                </h1>
+                            </div>
+                            :
+                            <img className="x_combat" src={x_combat} alt="x_combat" />
+                        }
+                    </div>
+
+                    <img className="img_jokempo" src={escolhaMaquina} />
                     <img className="play_icon" src={homem_de_ferro} alt="Homem de Ferro" />
                 </div>
                 <div className="escolhe_opcao">
-                    
+
                     <figure className={`invisivel${jogar ? " aparece_box" : " "}`}>
-                        <a className={`opcao`} onClick={(e) => this.handleChoose(e)} href="">
-                            <img className="img_jokempo" data-value={VAL_PEDRA} src={pedra} alt="pedra" />
-                        </a>
-                        <a className={`opcao`} onClick={(e) => this.handleChoose(e)} href="">
-                            <img className="img_jokempo" data-value={VAL_PAPEL} src={papel} alt="papel" />
-                        </a>
-                        <a className={`opcao`} onClick={(e) => this.handleChoose(e)} href="">
-                            <img className="img_jokempo" data-value={VAL_TESOURA} src={tesoura} alt="tesoura" />
-                        </a>                        
+                        <img className="img_jokempo" onClick={(e) => this.handleChoose(e)} data-value={VAL_PEDRA} src={pedra} alt="pedra" />
+                        <img className="img_jokempo" onClick={(e) => this.handleChoose(e)} data-value={VAL_PAPEL} src={papel} alt="papel" />
+                        <img className="img_jokempo" onClick={(e) => this.handleChoose(e)} data-value={VAL_TESOURA} src={tesoura} alt="tesoura" />
                     </figure>
                     <button className={`button_play${jogar ? " invisivel" : ""}`} onClick={(e) => this.handleClick(e)}>
-                        <a className="play" href="###">PLAY</a>
+                        PLAY
                     </button>
                 </div>
             </div>
@@ -147,4 +145,8 @@ class Play extends Component {
     }
 }
 
-export default Play
+export default connect(state => ({
+    heroiPC: state.heroiPC,
+    heroiPlayer: state.heroiPlayer,
+})
+)(Play)
