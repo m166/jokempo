@@ -1,9 +1,12 @@
-import { createStore } from 'redux';
+import {
+    PLAYER_CHANGED,
+    PLAYER_CHANGED_CLEAR,
+} from "./actions"
 
 
-const initialState = {
-    heroiPC: null,
-    heroiPlayer: null,
+export const initialState = {
+    heroiPC: {},
+    heroiPlayer: {},
     herois: [
         {
             id: 1,
@@ -38,56 +41,18 @@ const initialState = {
     ]
 }
 
-function reducer(state = initialState, action) {
-    if (action.type === 'PLAYER_CHANGED') {
-        return {
-            ...state,
-            heroiPC: action.payload.heroi,
-            heroiPlayer: action.payload.heroi
-        }
-    }
-    return state
-
-}
-
-const store = createStore(reducer);
-
-
-
-export default store;
-
-/*// InitialState
-const initialState = {
-    jogador: []
-}
-
-// AppReducer
-const AppReducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'PLAYER_CHANGED':
-            return { ...state, jogador: action.payload.jogador }
+        case PLAYER_CHANGED_CLEAR:
+            return { ...state, ...initialState }
+        case PLAYER_CHANGED:
+            return { ...state, heroiPC: action.payload.heroiPC }
+        case PLAYER_CHANGED:
+            return { ...state, heroiPlayer: action.payload.heroiPlayer }
         default:
             return state
     }
+
 }
 
-
-
-// AppAction
-export const doChangeJogador = jogador => {
-    return {
-        type: 'PLAYER_CHANGED',
-        payload: {
-            jogador
-        }
-    }
-}
-
-
-
-
-// Reducers
-const rootReducer = combineReducers({
-    AppState: AppReducer,
-})
-*/
+export default {reducer}
