@@ -1,6 +1,6 @@
-export const PLAYER_CHANGED = "PLAYER_CHANGED"
+export const PLAYER_CHANGED_PC = "PLAYER_CHANGED_PC"
+export const PLAYER_CHANGED_PLAYER = "PLAYER_CHANGED_PLAYER"
 export const PLAYER_CHANGED_CLEAR = "PLAYER_CHANGED_CLEAR"
-
 
 const doClearHeroi = () => {
     return {
@@ -8,13 +8,22 @@ const doClearHeroi = () => {
     }
 }
 
-const toggleEscolha = heroi => {
+const setHeroiPlayer = heroi => {
     return {
-        type: 'PLAYER_CHANGED',
+        type: 'PLAYER_CHANGED_PLAYER',
         payload: {
-            heroi
+            heroiPlayer: heroi
         }
     }
 }
 
-export { toggleEscolha, doClearHeroi }
+const setHeroiPC = heroi => {
+    return {
+        type: 'PLAYER_CHANGED_PC',
+        payload: {
+            heroiPC: heroi
+        }
+    }
+}
+
+export { setHeroiPlayer, setHeroiPC, doClearHeroi }

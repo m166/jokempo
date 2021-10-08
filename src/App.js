@@ -1,6 +1,8 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import store from "./store/store";
 
 import EscolhaDeHeroi from "./components/EscolhaDeHeroi";
 import Play from "./components/Play";
@@ -8,12 +10,14 @@ import Home from "./components/Home";
 import Pagina404 from "./paginas/Pagina404";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
+import { Provider } from "react-redux";
 
 class App extends Component {
 
   render() {
+
     return (
+      <Provider store={store}>
         <Router>
           <Header />
           <Switch>
@@ -32,6 +36,7 @@ class App extends Component {
           </Switch>
           <Footer />
         </Router>
+      </Provider>
     );
   }
 }

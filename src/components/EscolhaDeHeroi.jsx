@@ -1,33 +1,44 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../style/public.css'
 import '../style/EscolhaDeHeroi.css'
+
+import { busca } from '../api/api'
 
 import { bindActionCreators } from "redux"
 import { connect } from 'react-redux'
 
-import { toggleEscolha } from "../store/actions"
+import { setHeroiPlayer, setHeroiPC } from "../store/actions"
 
+const EscolhaDeHeroi = ({url}) => {
 
-class EscolhaDeHeroi extends Component {
+    const [herois, setHerois] = useState([])
 
-    render() {
+    useEffect(() => {
+        busca(url, setHerois)
+    }, [])
 
-        const { initialState } = this.props.EscolhaDeHeroiState
+    const handlePlayer = heroi => {
+        setHeroiPlayer(heroi)
+    }
 
-        return (
-            <section className="escolha_heroi_box container">
+    const handlePC = heroi => {
+        setHeroiPC(heroi)
+    }
+
+    return(
+        <section className="escolha_heroi_box container">
                 <h1 className="escolha_heroi_titulo">
                     ESCOLHA SEU HEROI !
                 </h1>
                 <div className="escolha_heroi">
                     <ul className="lista_herois_box">
                         {
-                            initialState.map((initialState) => (
-                                <li onClick={() => dispatch(toggleEscolha(initialState.herois))}
-                                    className="lista_herois" key={initialState.herois.id}>
-                                    <img src={initialState.herois.image} className="img_heroi" alt="herois" />
+                            herois.map((heroi) => (
+                                <li onClick={(heroi) => handlePlayer(heroi)}
+                                    className="lista_herois" key={heroi.id}>
+                                    <img src={heroi.image} className="img_heroi" alt="herois" />
                                     <h3 className="name_heroi">
-                                        {initialState.herois.name}
+                                        {heroi.name}
                                     </h3>
                                 </li>
                             ))
@@ -35,17 +46,11 @@ class EscolhaDeHeroi extends Component {
                     </ul>
                 </div>
             </section >
-        )
-    }
+    )
 }
-
-const mapStateToProps = state => ({
-    AppState: state.AppState,
-    EscolhaDeHeroiState: state.EscolhaDeHeroiState
-})
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({ toggleEscolha }, dispatch)
+    return bindActionCreators({ setHeroiPlayer, setHeroiPC }, dispatch)
 }
 
-export default connect( mapDispatchToProps, mapStateToProps)(EscolhaDeHeroi)
+export default connect( null, mapDispatchToProps)(EscolhaDeHeroi)
