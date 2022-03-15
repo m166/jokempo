@@ -11,7 +11,7 @@ class Footer extends Component {
                     JOGO
                 </h1>
                 <h3 className="footer_text">
-                    Desenvolvido pelo Estágiario
+                    Desenvolvido por Matheus Moreno
                 </h3>
             </footer>
         )

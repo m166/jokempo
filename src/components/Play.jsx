@@ -3,10 +3,9 @@ import pedra from '../img/pedra.png'
 import papel from '../img/papel.png'
 import tesoura from '../img/tesoura.png'
 import x_combat from '../img/x_combat.png';
+import capitao_america from '../img/capitao_america.png'
+import homem_de_ferro from '../img/homem_de_ferro.png'
 import '../style/Play.css'
-
-import { connect } from "react-redux";
-
 
 
 const VAL_PEDRA = 1
@@ -105,11 +104,10 @@ class Play extends Component {
 
     render() {
         const { jogar, resultado, imgEscolhida, escolhaMaquina } = this.state
-        const { heroiPC, heroiPlayer } = this.props.PlayState
         return (
             <div>
                 <div className="resultado_tela">
-                    <img className="play_icon" src={heroiPlayer.image} alt="" />
+                    <img className="play_icon" src={capitao_america} alt="" />
                     <img className="img_jokempo" src={imgEscolhida} />
 
                     <div className="mostra_resultado">
@@ -126,7 +124,7 @@ class Play extends Component {
                     </div>
 
                     <img className="img_jokempo" src={escolhaMaquina} />
-                    <img className="play_icon" src={heroiPC.image} alt="" />
+                    <img className="play_icon" src={homem_de_ferro} alt="" />
                 </div>
                 <div className="escolhe_opcao">
 
@@ -144,9 +142,4 @@ class Play extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    AppState: state.AppState,
-    PlayState: state.PlayState
-})
-
-export default connect(mapStateToProps)(Play)
+export default Play;

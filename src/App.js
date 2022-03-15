@@ -10,14 +10,16 @@ import Home from "./components/Home";
 import Pagina404 from "./paginas/Pagina404";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Provider } from "react-redux";
+/*import { Provider } from "react-redux";*/
+import Jogo from "./components/Jogo";
 
 class App extends Component {
 
   render() {
 
     return (
-      <Provider store={store}>
+      <Jogo/>
+      /*<Provider store={store}>
         <Router>
           <Header />
           <Switch>
@@ -36,10 +38,9 @@ class App extends Component {
           </Switch>
           <Footer />
         </Router>
-      </Provider>
+      </Provider>*/
     );
   }
 }
-
 
 export default App;
